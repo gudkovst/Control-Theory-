@@ -7,7 +7,7 @@ Shape Version=11.00
 Screen=1536,864
 MCAPVersion=12.2.0.5
 Key ID=Demo
-NLCnt=20
+NLCnt=21
 TXCnt=0
 
 [shapedef]
@@ -52,6 +52,20 @@ Line=18,-4,18,4
 Line=24,0,24,0
 
 [shapedef]
+Name=LoopGain
+Line=0,0,48,0
+PolyClosed=3
+PolyLine=13,-3
+PolyLine=13,3
+PolyLine=16,0
+PolyClosed=3
+PolyLine=32,-3
+PolyLine=32,3
+PolyLine=35,0
+Line=30,-6,18,6
+Line=18,-6,30,6
+
+[shapedef]
 Name=Minus.root
 Line=-2,0,2,0
 
@@ -61,8 +75,13 @@ Line=-2,0,2,0
 Line=0,-2,0,2
 
 [shapedef]
-Name=SPICE_V
+Name=Sine_Source
 Root="Vsource.root",0,0,0
+Line=24,-6,26,-4
+Line=26,-4,26,-2
+Line=26,-2,22,2
+Line=22,2,22,4
+Line=22,4,24,6
 
 [shapedef]
 Name=Sub
@@ -149,16 +168,28 @@ Pin="in",a,0,0,-3,-2
 Pin="out",a,6,0,-4,-1
 
 [compdef]
-Name=Voltage Source
-Definition=VSpice
-Shape=SPICE_V
-Mask=4865
-Used=57
-memo=Voltage Source
-Label Offset=19,13,15,13
+Name=Loop Gain Probe
+Definition=Loop Gain Probe
+Shape=LoopGain
+Mask=4096
+Used=4
+memo=This probe is used to designate the point to break the loop for a Stability analysis
+Label Offset=12,8,10,9
 PinCnt=2
-Pin="Plus",6,0,-5,-6
-Pin="Minus",0,0,-20,-6
+Pin="Plus",0,0,-11,-1
+Pin="Minus",6,0,-8,-1
+
+[compdef]
+Name=Sine Source
+Definition=Sine source
+Shape=Sine_Source
+Mask=4864
+Used=4
+memo=Sine Source
+Label Offset=18,12,15,12
+PinCnt=2
+Pin="Plus",6,0,-6,-6
+Pin="Minus",0,0,-19,-6
 
 [Circuit]
 Window Placement=2,3, -1,-1, -8,-31, 26,26,1157,456
@@ -321,7 +352,7 @@ ON=0,0,PACKAGE
 V
 
 [Wire]
-Pxs=912,176,1000,176
+Pxs=960,176,1000,176
 
 [Comp]
 Name=F
@@ -349,51 +380,39 @@ V
 [Wire]
 Pxs=512,176,640,176
 
-[Wire]
-Pxs=1000,176,1056,176
-
 [Comp]
-Name=Voltage Source
-Px=304,312
-Rot=3
+Name=Loop Gain Probe
+Px=912,176
 
 [Attr]
-ON=-31,-27,PART
-V=V1
+ON=12,8,PART
+V=Probe1
 Style=8192
-
-[Attr]
-ON=-23,-41,VALUE
-V=1
 
 [Attr]
 ON=0,0,PACKAGE
 V
 
-[Attr]
-ON=0,0,SMOOTHING
-V=N
-Style=256
+[Wire]
+Pxs=1000,176,1056,176
+
+[Comp]
+Name=Sine Source
+Px=304,312
+Rot=3
 
 [Attr]
-ON=0,0,Saved_PulseS
-V=N
-Style=256
+ON=-31,-26,PART
+V=V1
+Style=8192
 
 [Attr]
-ON=0,0,FRACTION
-V=.2
-Style=256
+ON=-88,-40,MODEL
+V=NewModel1
 
 [Attr]
-ON=0,0,Saved_PulseF
-V=.2
-Style=256
-
-[Attr]
-ON=0,0,Saved_Pulse
-V=DC 0 AC 1 0 Pulse 0 5 100n 10n 10n 400n 1u
-Style=256
+ON=0,0,PACKAGE
+V
 
 [Schematic]
 CurrentSection 0=0
@@ -592,7 +611,7 @@ Scale 0=1
 Scale 1=1
 Scale 2=1
 Scale 3=1
-Px=301,313
+Px=580,229
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
 Anchor Color=#000000
@@ -826,7 +845,6 @@ Num Out Allow Dup Y Expr=False
 Num Out Low="TSTART"
 Num Out High="TMAX"
 Num Out Font=Height=-15,FStyle=0,Color=#000000,Name=Courier New
-Num Out Window Placement=2,3, -1,-1, -8,-31, 130,130,1475,560
 Num Out Format=3
 Num Out HideNonSelected=False
 Num Out UseActualDataPoints=False
@@ -952,6 +970,21 @@ ALIGNBOTTOM=No
 Analysis=Transient
 Name="MAIN"
 
+[AObject]
+Analysis=Transient
+Object=MeasureH
+Locked=True
+EndPoint=ArrowF
+CBorder=#000080
+w=0
+AliasID1=2
+w2=0
+AliasID2=2
+Pos=10.244140625,1.228234757255642,25.7470703125,1.1660646200180054
+Posm=1.1544885177453028
+Font=Height=-15,FStyle=0,Color=#FF0000,Name=Arial
+Format=3
+
 [AC]
 WinID=2
 Window Placement=2,3, -1,-1, -8,-31, 0,0,1345,430
@@ -1012,7 +1045,7 @@ FFT_IncludeDCHarmonic=False
 FFT_AutoScale_Harmonics="10"
 PrinterAutoTile=No
 PrinterBlackBorder=No
-MonMaxShow=2
+MonMaxShow=1
 MonPageWidth=66
 MonPlotWidth=21
 MonExprXWidth=142
@@ -1229,7 +1262,7 @@ Margin Line=True
 Margin Line Color=#0000FF
 Margin Line Pattern=Dot6
 Margin Line Weight=2
-Margin Text=False
+Margin Text=True
 Margin Arrow=True
 Margin Arrow Color=#FF0000
 Margin Arrow Weight=2
@@ -1495,10 +1528,10 @@ Seed=0
 
 [Limits]
 Analysis=Transient
-TMax=1000
+TMax=100
 TStart=0
 TStep=0
-NPts=101
+NPts=51
 Temp=27
 RetraceRuns=1
 StateVar=Zero
@@ -1513,10 +1546,9 @@ Plt=1
 AliasID=2
 XExp=T
 YExp=v(2)
-XRng=1000
+XRng=AutoAlways
 YRng=AutoAlways
 Options=LINEARX,LINEARY
-Range Grid X=200
 Enable=Enable
 Line Color=#FF0000
 Text Color=#FF0000
@@ -1534,13 +1566,13 @@ NOFmtY=3E
 
 [Limits]
 Analysis=AC
-FRange=100,0
+FRange=1,1e-3
 NPts=1000
 Temp=27
 MaxChng=5
 NInput=V1
 NOutput=2
-Sweep type=Linear
+Sweep type=Auto
 StateVar=Zero
 RunOption=Normal
 Temperature Type=Linear
@@ -1559,33 +1591,9 @@ YExp=Im(v(2))
 XRng=AutoAlways
 YRng=AutoAlways
 Options=LINEARX,LINEARY
-Enable=DontRun
+Enable=Enable
 Line Color=#0000FF
 Text Color=#0000FF
-Rainbow=False
-VFmtX=3
-VFmtY=3
-ScaleFactorX="None"
-ScaleFactorY="None"
-ScaleUnitsX="Auto"
-ScaleUnitsY="Auto"
-SFmtX=2
-SFmtY=2
-NOFmtX=3E
-NOFmtY=3E
-
-[WaveForm]
-Analysis=AC
-Plt=1
-AliasID=2
-XExp=T
-YExp=v(2)
-XRng=AutoAlways
-YRng=AutoAlways
-Options=LINEARX,LINEARY
-Enable=Enable
-Line Color=#FF0000
-Text Color=#FF0000
 Rainbow=False
 VFmtX=3
 VFmtY=3

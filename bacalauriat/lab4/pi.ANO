@@ -1,0 +1,83 @@
+********************************************************************************
+***                       Micro-Cap 12.2.0.5 (64 bit)                        ***
+***                                                                          ***
+***                                                                          ***
+***                            AC Analysis of pi                             ***
+***                           13.05.2023 20:41:23                            ***
+********************************************************************************
+Limits
+======
+Frequency Range          Linear 100,0
+Number of Points         1000
+Temperature              Linear 27
+Maximum Change %         5
+Noise Input              V1
+Noise Output             2
+Run Options              Normal
+State Variables          Zero
+Operating Point          On
+Auto Scale Ranges        On
+Accumulate Plots         Off
+Ignore Expression Errors Off
+
+
+*****************************************************
+***                Temperature=27                 ***
+*****************************************************
+
+Temperature=27
+
+DC Operating Point Voltages
+===========================
+Node         Voltage  Node         Voltage  Node         Voltage 
+1           561.884m  2           561.884m  3           438.116m 
+4             0.000   5           438.116m  6             1.000  
+
+
+Operating Point for Devices of Type Dependent Source
+====================================================
+Instance:            X6.E1
+V                 561.884m
+Power DC Terms:
+PG                  0.000 
+
+DC Pin Currents:
+ISource             0.000 
+
+
+
+Operating Point for Devices of Type Function Source
+===================================================
+Instance:            X4.E1         X5.E1
+V                 438.116m      438.116m
+Power DC Terms:
+PG                  0.000         0.000 
+
+DC Pin Currents:
+ISource             0.000         0.000 
+
+
+
+Operating Point for Devices of Type Laplace Source
+==================================================
+Instance:            X3.E2         X1.E2
+V                 561.884m        0.000 
+Power DC Terms:
+PG                  0.000         0.000 
+
+DC Pin Currents:
+ISource             0.000         0.000 
+
+
+
+Operating Point for Devices of Type SPICE Source
+================================================
+Instance:               V1
+V                   1.000 
+Power DC Terms:
+PG                  0.000 
+
+DC Pin Currents:
+ISource             0.000 
+
+

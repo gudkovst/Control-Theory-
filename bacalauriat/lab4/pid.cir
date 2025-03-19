@@ -7,8 +7,14 @@ Shape Version=11.00
 Screen=1536,864
 MCAPVersion=12.2.0.5
 Key ID=Demo
-NLCnt=20
+NLCnt=26
 TXCnt=0
+
+[shapedef]
+Name=Absolute
+Root="Plt.root",0,0,0
+Line=40,0,56,-16
+Line=40,0,24,-16
 
 [shapedef]
 Name=Circle.root
@@ -56,6 +62,15 @@ Name=Minus.root
 Line=-2,0,2,0
 
 [shapedef]
+Name=Plt.root
+Rectangle=16,-24,64,24
+FColor=None
+Line=0,0,16,0
+Line=22,0,58,0
+Line=40,-18,40,18
+Line=64,0,80,0
+
+[shapedef]
 Name=Plus.root
 Line=-2,0,2,0
 Line=0,-2,0,2
@@ -71,10 +86,20 @@ Root="Plus.root",5,-10,0
 Root="Minus.root",25,27,0
 
 [shapedef]
-Name=Sum
-Root="Circle.root",0,0,0
-Line=27,0,37,0
-Line=32,-5,32,5
+Name=Sum3
+Line=0,0,0,0
+Line=0,16,24,16
+Line=0,32,24,32
+Rectangle=24,-8,88,40
+FColor=None
+Line=40,0,56,16
+Line=88,16,112,16
+Line=64,0,64,4
+Line=64,32,64,28
+Line=56,16,40,32
+Line=40,32,64,32
+Line=64,0,40,0
+Line=0,0,24,0
 
 [shapedef]
 Name=Vsource.root
@@ -87,6 +112,17 @@ Root="Plus.root",41,7,0
 Current=32,16,16,16
 
 [compdef]
+Name=Ground
+Definition=Ground
+Shape=Ground
+Mask=1793
+Used=276
+memo=Ground
+Label Offset=0,0,0,0
+PinCnt=1
+Pin="PinA",0,0,-3,-7
+
+[compdef]
 Name=F
 Definition=Macro
 Shape=FofS
@@ -97,19 +133,6 @@ Label Offset=22,-14,-20,60
 PinCnt=2
 Pin="PinA",a,0,0,-11,-4
 Pin="PinB",a,20,0,-8,-4
-
-[compdef]
-Name=Sum
-Definition=Macro
-Shape=Sum
-Mask=4096
-Used=8
-memo=2-Input Summer Macro
-Label Offset=45,5,15,21
-PinCnt=3
-Pin="PinA",a,0,0,-9,-3
-Pin="PinB",a,4,4,8,4
-Pin="PinC",a,8,0,-7,-3
 
 [compdef]
 Name=Sub
@@ -125,17 +148,6 @@ Pin="PinB",a,4,4,9,4
 Pin="PinC",a,8,0,-8,-4
 
 [compdef]
-Name=Ground
-Definition=Ground
-Shape=Ground
-Mask=1793
-Used=276
-memo=Ground
-Label Offset=0,0,0,0
-PinCnt=1
-Pin="PinA",0,0,-3,-7
-
-[compdef]
 Name=Multi
 Definition=Macro
 Shape=coef
@@ -147,6 +159,32 @@ Label Offset=25,8,12,18
 PinCnt=2
 Pin="in",a,0,0,-3,-2
 Pin="out",a,6,0,-4,-1
+
+[compdef]
+Name=Sum3
+Definition=Macro
+Shape=Sum3
+Mask=4096
+Used=1
+memo=3-Input Summer Macro
+Label Offset=25,41,12,44
+PinCnt=4
+Pin="PinA",a,0,0,-3,-1
+Pin="PinB",a,0,2,-4,0
+Pin="PinC",a,0,4,-4,0
+Pin="PinD",a,14,2,-7,-2
+
+[compdef]
+Name=Abs
+Definition=Macro
+Shape=Absolute
+Mask=20480
+Used=4
+memo=Absolute Value Macro
+Label Offset=20,25,28,28
+PinCnt=2
+Pin="PinA",a,0,0,-11,-3
+Pin="PinB",a,10,0,-6,-3
 
 [compdef]
 Name=Voltage Source
@@ -163,7 +201,7 @@ Pin="Minus",0,0,-20,-6
 [Circuit]
 Window Placement=2,3, -1,-1, -8,-31, 26,26,1157,456
 Default Object=Color=#000080
-Default Object Font=Height=-15,FStyle=0,Color=#000080,Name=Arial
+Default Object Font=Height=-15,FStyle=0,Color=#000000,Name=Arial
 Default Object Apply Border To Text=No
 Default Object Apply Fill To Text=No
 Default Object GridSnap=No
@@ -173,9 +211,9 @@ PowerFormat=3
 PathDelayFormat=3
 WarningFormat=3
 GridTextFormulaFormat=3
-Window Placement in Transient Analysis=2,3, -1,-1, -8,-31, 130,130,1475,560
-Window Placement in AC Analysis=2,3, -1,-1, -8,-31, 0,0,1345,430
-Window Placement in Stability Analysis=2,3, -1,-1, -8,-31, 0,0,1345,430
+Window Placement in Transient Analysis=2,3, -1,-1, -8,-31, 182,182,1527,612
+Window Placement in AC Analysis=2,3, -1,-1, -8,-31, 26,26,1157,456
+Window Placement in Stability Analysis=2,3, -1,-1, -8,-31, 78,78,1423,508
 SpiceType=AMBIGUOUS
 Title_Block_Border=None
 Title_Block=False
@@ -191,13 +229,18 @@ Show Attribute Text=True
 Show Grid Text=True
 
 [Comp]
+Name=Ground
+Px=400,336
+Rot=7
+
+[Comp]
 Name=F
 Style=ShowPinText
-Px=752,176
+Px=792,288
 
 [Attr]
 ON=22,-14,PART
-V=X3
+V=X1
 Style=8192
 
 [Attr]
@@ -214,49 +257,12 @@ ON=0,0,PACKAGE
 V
 
 [Comp]
-Name=Sum
-Px=640,176
-
-[Attr]
-ON=45,5,PART
-V=X4
-Style=8192
-
-[Attr]
-ON=45,19,FILE
-V=Sum
-
-[Attr]
-ON=45,47,Param:KA
-V=1
-
-[Attr]
-ON=45,61,Param:KB
-V=1
-
-[Attr]
-ON=0,0,PACKAGE
-V
-
-[Wire]
-Pxs=672,208,672,280
-
-[Wire]
-Pxs=408,176,416,176
-
-[Wire]
-Pxs=512,176,512,280
-
-[Wire]
-Pxs=416,176,512,176
-
-[Comp]
 Name=Sub
-Px=352,176
+Px=400,288
 
 [Attr]
 ON=44,5,PART
-V=X5
+V=X2
 Style=8192
 
 [Attr]
@@ -275,45 +281,22 @@ V=1
 ON=0,0,PACKAGE
 V
 
-[Wire]
-Pxs=304,176,352,176
-
-[Wire]
-Pxs=304,176,304,264
-
-[Wire]
-Pxs=384,208,384,360
-
-[Wire]
-Pxs=384,360,1000,360
-
-[Wire]
-Pxs=904,176,912,176
-
-[Wire]
-Pxs=1000,176,1000,360
-
-[Comp]
-Name=Ground
-Px=304,312
-Rot=7
-
 [Comp]
 Name=Multi
-Px=704,176
+Px=744,288
 Rot=4
 
 [Attr]
 ON=25,-22,PART
-V=X6
+V=X3
 
 [Attr]
 ON=25,-36,FILE
 V=Multi
 
 [Attr]
-ON=7,20,Param:COEF
-V=1.2825
+ON=6,23,Param:COEF
+V=1.25
 Style=8192
 
 [Attr]
@@ -321,16 +304,48 @@ ON=0,0,PACKAGE
 V
 
 [Wire]
-Pxs=912,176,1000,176
+Pxs=944,288,952,288
+
+[Wire]
+Pxs=1008,288,1008,496
+
+[Wire]
+Pxs=432,496,1008,496
+
+[Wire]
+Pxs=432,320,432,496
 
 [Comp]
 Name=F
 Style=ShowPinText
-Px=512,280
+Px=464,432
 
 [Attr]
 ON=22,-14,PART
-V=X1
+V=X5
+Style=8192
+
+[Attr]
+ON=22,0,FILE
+V=F
+
+[Attr]
+ON=44,28,Param:FS
+V=1/(s * 3.4)
+Style=8192
+
+[Attr]
+ON=0,0,PACKAGE
+V
+
+[Comp]
+Name=F
+Style=ShowPinText
+Px=464,160
+
+[Attr]
+ON=22,-14,PART
+V=X6
 Style=8192
 
 [Attr]
@@ -339,7 +354,104 @@ V=F
 
 [Attr]
 ON=22,28,Param:FS
-V=1/(S*6.66)
+V=0.94 * s / (1 + 0.11 * s)
+Style=8192
+
+[Attr]
+ON=0,0,PACKAGE
+V
+
+[Comp]
+Name=Sum3
+Px=632,272
+
+[Attr]
+ON=25,41,PART
+V=X7
+Style=8192
+
+[Attr]
+ON=25,55,FILE
+V=Sum3
+
+[Attr]
+ON=25,83,Param:KA
+V=1
+
+[Attr]
+ON=25,97,Param:KB
+V=1
+
+[Attr]
+ON=25,111,Param:KC
+V=1
+
+[Attr]
+ON=25,125,PACKAGE
+V=TO-263
+
+[Wire]
+Pxs=464,288,464,432
+
+[Wire]
+Pxs=464,160,464,288
+
+[Wire]
+Pxs=464,288,632,288
+
+[Wire]
+Pxs=624,160,624,272
+
+[Wire]
+Pxs=624,272,632,272
+
+[Wire]
+Pxs=624,304,624,432
+
+[Wire]
+Pxs=624,304,632,304
+
+[Wire]
+Pxs=464,432,464,640
+
+[Wire]
+Pxs=464,640,480,640
+
+[Comp]
+Name=Abs
+Style=ShowPinText
+Px=480,640
+
+[Attr]
+ON=20,25,PART
+V=X8
+Style=8192
+
+[Attr]
+ON=20,39,FILE
+V=Abs
+
+[Attr]
+ON=0,0,PACKAGE
+V
+
+[Comp]
+Name=F
+Style=ShowPinText
+Px=560,640
+
+[Attr]
+ON=22,-14,PART
+V=X9
+Style=8192
+
+[Attr]
+ON=22,0,FILE
+V=F
+
+[Attr]
+ON=22,28,Param:FS
+V=1 / S
 Style=8192
 
 [Attr]
@@ -347,14 +459,17 @@ ON=0,0,PACKAGE
 V
 
 [Wire]
-Pxs=512,176,640,176
+Pxs=720,640,1128,640
 
 [Wire]
-Pxs=1000,176,1056,176
+Pxs=952,288,1008,288
+
+[Wire]
+Pxs=1008,288,1128,288
 
 [Comp]
 Name=Voltage Source
-Px=304,312
+Px=400,336
 Rot=3
 
 [Attr]
@@ -569,7 +684,7 @@ ALIGNBOTTOM=No
 
 [Section]
 Index=0
-Name="pi"
+Name="pid"
 Type=Main
 Enable=True
 CurrentPage 0=0
@@ -592,7 +707,7 @@ Scale 0=1
 Scale 1=1
 Scale 2=1
 Scale 3=1
-Px=301,313
+Px=222,102
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
 Anchor Color=#000000
@@ -656,7 +771,7 @@ Type=Text
 Print=False
 Enable=True
 Name=Models
-SB 0=23,18
+SB 0=15,16
 Font=Height=-15,FStyle=0,Color=#000000,Name=Courier New
 Comment Color=#008000
 WinBackGround Color=#FFFFFF
@@ -683,9 +798,6 @@ Search Color=#FFFF00
 [Text Area]
 Section=0
 Page=1
-Text=T = 0
-Text=Ti = 1
-Text=K = 1
 
 [Text Area]
 Section=0
@@ -706,9 +818,7 @@ Text=* .Model BJT1 NPN (RE=12 LOT/1/GAUSS=30% DEV/2/UNIFORM=2%)
 Text=*
 Text=* A .cir file is typically found in the data directory
 Text=*
-Text=
 Text=.MODEL 1 SIN ()
-Text=.MODEL NEWMODEL1 SIN ()
 
 [InfoPage]
 InfoPage=True
@@ -727,13 +837,13 @@ SimulationLog=True
 
 [Transient]
 WinID=1
-Window Placement=2,3, -1,-1, -8,-31, 130,130,1475,560
+Window Placement=2,3, -1,-1, -8,-31, 182,182,1527,612
 Font=Height=-19,FStyle=0,Color=#0000FF,Name=Arial
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
 Anchor Color=#000000
 Select Box Color=#000080
-Title
+Title=pid.cir
 AutoTitle=Yes
 Grid Color=#808080
 Grid Weight=1
@@ -780,7 +890,7 @@ Data Point Labels Color Fore=Height=-15,FStyle=0,Color=#000000,Name=Arial
 Data Point Labels Color Back=#FFFF00
 OperPoint=False
 OperPointOnly=False
-AutoScaleRanges=True
+AutoScaleRanges=False
 FixedTimeStep=False
 DoPSS=False
 PSS_Periods="1"
@@ -792,7 +902,7 @@ FFT_IncludeDCHarmonic=False
 FFT_AutoScale_Harmonics="10"
 PrinterAutoTile=No
 PrinterBlackBorder=No
-MonMaxShow=1
+MonMaxShow=3
 MonPageWidth=66
 MonPlotWidth=21
 MonExprXWidth=142
@@ -802,6 +912,7 @@ MonRangeYWidth=90
 AnimateWait=None
 AnimateWaitTime=500
 AnimatePressAfter=0
+ThumbNail=1241,0,1536,192
 Save_For_Future=No
 Reduce_Display=1
 Reduce_Save=1
@@ -826,10 +937,12 @@ Num Out Allow Dup Y Expr=False
 Num Out Low="TSTART"
 Num Out High="TMAX"
 Num Out Font=Height=-15,FStyle=0,Color=#000000,Name=Courier New
-Num Out Window Placement=2,3, -1,-1, -8,-31, 130,130,1475,560
+Num Out Window Placement=2,3, -1,-1, -8,-31, 182,182,1527,612
 Num Out Format=3
 Num Out HideNonSelected=False
-Num Out UseActualDataPoints=False
+Num Out UseActualDataPoints=True
+Wav SampleRate=11025
+Wav Nbits=16
 AutoSaveWave=False
 Wave Format=16E
 State Variables Format=5E
@@ -954,7 +1067,7 @@ Name="MAIN"
 
 [AC]
 WinID=2
-Window Placement=2,3, -1,-1, -8,-31, 0,0,1345,430
+Window Placement=2,3, -1,-1, -8,-31, 26,26,1157,456
 Font=Height=-19,FStyle=0,Color=#0000FF,Name=Arial
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
@@ -1012,7 +1125,7 @@ FFT_IncludeDCHarmonic=False
 FFT_AutoScale_Harmonics="10"
 PrinterAutoTile=No
 PrinterBlackBorder=No
-MonMaxShow=2
+MonMaxShow=3
 MonPageWidth=66
 MonPlotWidth=21
 MonExprXWidth=142
@@ -1174,7 +1287,7 @@ Name="MAIN"
 
 [Stability]
 WinID=6
-Window Placement=2,3, -1,-1, -8,-31, 0,0,1345,430
+Window Placement=2,3, -1,-1, -8,-31, 78,78,1423,508
 Font=Height=-19,FStyle=0,Color=#0000FF,Name=Arial
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
@@ -1443,7 +1556,7 @@ w=0
 AliasID1=1
 Page="OPEN"
 Formula=True
-Pos=0.12190807799442899,-2.7207207207207209,0,0
+Pos=0.072855153203342612,-2.8288288288288288,0,0
 Font=Height=-35,FStyle=0,Color=#008000,Name=Arial
 Text="Gain Margin=[STABILITY_GM] FG=[STABILITY_FG]"
 JustifyH=Left
@@ -1459,7 +1572,7 @@ w=1
 AliasID1=2
 Page="OPEN"
 Formula=True
-Pos=0.066727019498607251,-133.72093023255815,0,0
+Pos=0.025222841225626742,-130.23255813953489,0,0
 Font=Height=-35,FStyle=0,Color=#008000,Name=Arial
 Text="Phase Margin=[STABILITY_PH] FP=[STABILITY_FP]"
 JustifyH=Left
@@ -1495,7 +1608,7 @@ Seed=0
 
 [Limits]
 Analysis=Transient
-TMax=1000
+TMax=50
 TStart=0
 TStep=0
 NPts=101
@@ -1510,52 +1623,9 @@ IgnoreExprErrors=False
 [WaveForm]
 Analysis=Transient
 Plt=1
-AliasID=2
-XExp=T
-YExp=v(2)
-XRng=1000
-YRng=AutoAlways
-Options=LINEARX,LINEARY
-Range Grid X=200
-Enable=Enable
-Line Color=#FF0000
-Text Color=#FF0000
-Rainbow=False
-VFmtX=3
-VFmtY=3
-ScaleFactorX="None"
-ScaleFactorY="None"
-ScaleUnitsX="Auto"
-ScaleUnitsY="Auto"
-SFmtX=2
-SFmtY=2
-NOFmtX=3E
-NOFmtY=3E
-
-[Limits]
-Analysis=AC
-FRange=100,0
-NPts=1000
-Temp=27
-MaxChng=5
-NInput=V1
-NOutput=2
-Sweep type=Linear
-StateVar=Zero
-RunOption=Normal
-Temperature Type=Linear
-Accumulate Plots=False
-IgnoreExprErrors=False
-FirstValueDisplay=Mag
-SecondValueDisplay=PhaseDeg
-DisplayValuesInProbe=DC
-
-[WaveForm]
-Analysis=AC
-Plt=1
 AliasID=1
-XExp=Re(v(2))
-YExp=Im(v(2))
+XExp=T
+YExp=v(3)
 XRng=AutoAlways
 YRng=AutoAlways
 Options=LINEARX,LINEARY
@@ -1575,15 +1645,105 @@ NOFmtX=3E
 NOFmtY=3E
 
 [WaveForm]
-Analysis=AC
+Analysis=Transient
 Plt=1
 AliasID=2
 XExp=T
 YExp=v(2)
 XRng=AutoAlways
 YRng=AutoAlways
+Options=OUTPUT,LINEARX,LINEARY
+Enable=Enable
+Line Color=#FF0000
+Text Color=#FF0000
+Rainbow=False
+VFmtX=3
+VFmtY=3
+ScaleFactorX="None"
+ScaleFactorY="None"
+ScaleUnitsX="Auto"
+ScaleUnitsY="Auto"
+SFmtX=2
+SFmtY=2
+NOFmtX=3F
+NOFmtY=3F
+
+[WaveForm]
+Analysis=Transient
+Plt=2
+AliasID=3
+XExp=T
+YExp=v(9)
+XRng=AutoAlways
+YRng=AutoAlways
+Options=LINEARX,LINEARY
+Enable=DontRun
+Line Color=#008000
+Text Color=#008000
+Rainbow=False
+VFmtX=3
+VFmtY=3
+ScaleFactorX="None"
+ScaleFactorY="None"
+ScaleUnitsX="Auto"
+ScaleUnitsY="Auto"
+SFmtX=2
+SFmtY=2
+NOFmtX=3E
+NOFmtY=3E
+
+[Limits]
+Analysis=AC
+FRange=1, 1e-3
+NPts=1000
+Temp=27
+MaxChng=5
+NInput=NONE
+NOutput=2
+Sweep type=Auto
+StateVar=Zero
+RunOption=Normal
+Temperature Type=Linear
+Accumulate Plots=False
+IgnoreExprErrors=False
+FirstValueDisplay=Mag
+SecondValueDisplay=PhaseDeg
+DisplayValuesInProbe=DC
+
+[WaveForm]
+Analysis=AC
+Plt=1
+AliasID=1
+XExp=Re(v(2))
+YExp=Im(v(2))
+XRng=AutoAlways
+YRng=AutoAlways
 Options=LINEARX,LINEARY
 Enable=Enable
+Line Color=#0000FF
+Text Color=#0000FF
+Rainbow=False
+VFmtX=3
+VFmtY=3
+ScaleFactorX="None"
+ScaleFactorY="None"
+ScaleUnitsX="Auto"
+ScaleUnitsY="Auto"
+SFmtX=2
+SFmtY=2
+NOFmtX=3E
+NOFmtY=3E
+
+[WaveForm]
+Analysis=AC
+Plt=2
+AliasID=2
+XExp=F
+YExp=sqrt(Re(v(2))^2 + Im(v(2))^2)
+XRng=AutoAlways
+YRng=AutoAlways
+Options=OUTPUT,LINEARX,LINEARY
+Enable=DontRun
 Line Color=#FF0000
 Text Color=#FF0000
 Rainbow=False
@@ -1598,9 +1758,33 @@ SFmtY=2
 NOFmtX=3E
 NOFmtY=3E
 
+[WaveForm]
+Analysis=AC
+Plt=3
+AliasID=3
+XExp=F
+YExp=arctan(Im(v(2)) / Re(v(2)))
+XRng=AutoAlways
+YRng=AutoAlways
+Options=OUTPUT,LINEARX,LINEARY
+Enable=DontRun
+Line Color=#008000
+Text Color=#008000
+Rainbow=False
+VFmtX=3
+VFmtY=3
+ScaleFactorX="None"
+ScaleFactorY="None"
+ScaleUnitsX="Auto"
+ScaleUnitsY="Auto"
+SFmtX=2
+SFmtY=2
+NOFmtX=3E
+NOFmtY=3E
+
 [Limits]
 Analysis=Stability
-FRange=2e-1,6e-2
+FRange=12e-2, 2e-2
 NPts=1001
 Temp=27
 ProbeName=PROBE1
@@ -1619,11 +1803,9 @@ Page=Open
 AliasID=1
 XExp=F
 YExp=dB(LoopGain)
-XRng=0.2,0.06
-YRng=12,-18
+XRng=AutoAlways
+YRng=AutoAlways
 Options=LINEARX,LINEARY
-Range Grid X=0.028
-Range Grid Y=6
 Enable=Enable
 Line Color=#0000FF
 Text Color=#0000FF
@@ -1646,11 +1828,9 @@ Page=Open
 AliasID=2
 XExp=F
 YExp=ph(LoopGain)
-XRng=0.2,0.06
-YRng=-50,-300
+XRng=AutoAlways
+YRng=AutoAlways
 Options=LINEARX,LINEARY
-Range Grid X=0.028
-Range Grid Y=50
 Enable=Enable
 Line Color=#FF0000
 Text Color=#FF0000
@@ -1673,11 +1853,9 @@ Page=Nyquist
 AliasID=3
 XExp=Re(LoopGain)
 YExp=Im(LoopGain)
-XRng=0.2,-0.8
-YRng=0.8,-1.2
+XRng=AutoAlways
+YRng=AutoAlways
 Options=LINEARX,LINEARY
-Range Grid X=0.2
-Range Grid Y=0.4
 Enable=Enable
 Line Color=#008000
 Text Color=#008000
