@@ -1,0 +1,206 @@
+********************************************************************************
+***                       Micro-Cap 12.2.0.5 (64 bit)                        ***
+***                                                                          ***
+***                                                                          ***
+***                         Stability Analysis of pi                         ***
+***                           25.04.2023 12:20:36                            ***
+********************************************************************************
+Limits
+======
+Frequency Range          Linear 2e-1,6e-2
+Number of Points         1001
+Temperature              Linear 27
+Probe Name               PROBE1
+Method                   Tian
+Run Options              Normal
+State Variables          Zero
+Operating Point          On
+Auto Scale Ranges        On
+Accumulate Plots         Off
+Ignore Expression Errors Off
+
+
+*****************************************************
+***                Temperature=27                 ***
+***                  LOOP_GAIN=1                  ***
+*****************************************************
+
+Temperature=27 LOOP_GAIN=1
+
+DC Operating Point Voltages
+===========================
+Node         Voltage  Node         Voltage  Node         Voltage
+1             0.000   2             0.000   3             0.000
+4             0.000   5             0.000   6             0.000
+7             0.000
+
+
+Operating Point for Devices of Type Resistor
+============================================
+Instance:              V1.RS
+V                     0.000
+Power DC Terms:
+PD                    0.000
+
+DC Pin Currents:
+Ir                    0.000
+
+Device Variables:
+tc1                   0.000
+tc2                   0.000
+
+
+
+Operating Point for Devices of Type Sine Source
+===============================================
+Instance:                 V1
+Using model:       NEWMODEL1
+V                     0.000
+Power DC Terms:
+PG                    0.000
+
+DC Pin Currents:
+ISource               0.000
+
+
+
+Operating Point for Devices of Type Dependent Source
+====================================================
+Instance:             X6.E1
+V                    0.000
+Power DC Terms:
+PG                   0.000
+
+DC Pin Currents:
+ISource              0.000
+
+
+
+Operating Point for Devices of Type Function Source
+===================================================
+Instance:             X4.E1          X5.E1
+V                    0.000          0.000
+Power DC Terms:
+PG                   0.000          0.000
+
+DC Pin Currents:
+ISource              0.000          0.000
+
+
+
+Operating Point for Devices of Type Laplace Source
+==================================================
+Instance:             X3.E2          X1.E2
+V                    0.000          0.000
+Power DC Terms:
+PG                   0.000          0.000
+
+DC Pin Currents:
+ISource              0.000          0.000
+
+
+
+Operating Point for Devices of Type SPICE Source
+================================================
+Instance:       PROBE1.Vinj     PROBE1.Vol    PROBE1.Iinj
+V                    0.000          0.000          0.000
+Power DC Terms:
+PG                   0.000          0.000          0.000
+
+DC Pin Currents:
+ISource              0.000          0.000          0.000
+
+
+
+*****************************************************
+***                Temperature=27                 ***
+***                  LOOP_GAIN=2                  ***
+*****************************************************
+
+Temperature=27 LOOP_GAIN=2
+
+DC Operating Point Voltages
+===========================
+Node         Voltage  Node         Voltage  Node         Voltage
+1             0.000   2             0.000   3             0.000
+4             0.000   5             0.000   6             0.000
+7             0.000
+
+
+Operating Point for Devices of Type Resistor
+============================================
+Instance:              V1.RS
+V                     0.000
+Power DC Terms:
+PD                    0.000
+
+DC Pin Currents:
+Ir                    0.000
+
+Device Variables:
+tc1                   0.000
+tc2                   0.000
+
+
+
+Operating Point for Devices of Type Sine Source
+===============================================
+Instance:                 V1
+Using model:       NEWMODEL1
+V                     0.000
+Power DC Terms:
+PG                    0.000
+
+DC Pin Currents:
+ISource               0.000
+
+
+
+Operating Point for Devices of Type Dependent Source
+====================================================
+Instance:             X6.E1
+V                    0.000
+Power DC Terms:
+PG                   0.000
+
+DC Pin Currents:
+ISource              0.000
+
+
+
+Operating Point for Devices of Type Function Source
+===================================================
+Instance:             X4.E1          X5.E1
+V                    0.000          0.000
+Power DC Terms:
+PG                   0.000          0.000
+
+DC Pin Currents:
+ISource              0.000          0.000
+
+
+
+Operating Point for Devices of Type Laplace Source
+==================================================
+Instance:             X3.E2          X1.E2
+V                    0.000          0.000
+Power DC Terms:
+PG                   0.000          0.000
+
+DC Pin Currents:
+ISource              0.000          0.000
+
+
+
+Operating Point for Devices of Type SPICE Source
+================================================
+Instance:       PROBE1.Vinj     PROBE1.Vol    PROBE1.Iinj
+V                    0.000          0.000          0.000
+Power DC Terms:
+PG                   0.000          0.000          0.000
+
+DC Pin Currents:
+ISource              0.000          0.000          0.000
+
+
+
