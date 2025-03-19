@@ -7,14 +7,8 @@ Shape Version=11.00
 Screen=1536,864
 MCAPVersion=12.2.0.5
 Key ID=Demo
-NLCnt=25
+NLCnt=16
 TXCnt=0
-
-[shapedef]
-Name=Absolute
-Root="Plt.root",0,0,0
-Line=40,0,56,-16
-Line=40,0,24,-16
 
 [shapedef]
 Name=Circle.root
@@ -62,15 +56,6 @@ Name=Minus.root
 Line=-2,0,2,0
 
 [shapedef]
-Name=Plt.root
-Rectangle=16,-24,64,24
-FColor=None
-Line=0,0,16,0
-Line=22,0,58,0
-Line=40,-18,40,18
-Line=64,0,80,0
-
-[shapedef]
 Name=Plus.root
 Line=-2,0,2,0
 Line=0,-2,0,2
@@ -86,20 +71,10 @@ Root="Plus.root",5,-10,0
 Root="Minus.root",25,27,0
 
 [shapedef]
-Name=Sum3
-Line=0,0,0,0
-Line=0,16,24,16
-Line=0,32,24,32
-Rectangle=24,-8,88,40
-FColor=None
-Line=40,0,56,16
-Line=88,16,112,16
-Line=64,0,64,4
-Line=64,32,64,28
-Line=56,16,40,32
-Line=40,32,64,32
-Line=64,0,40,0
-Line=0,0,24,0
+Name=Sum
+Root="Circle.root",0,0,0
+Line=27,0,37,0
+Line=32,-5,32,5
 
 [shapedef]
 Name=Vsource.root
@@ -127,7 +102,7 @@ Name=F
 Definition=Macro
 Shape=FofS
 Mask=20480
-Used=5
+Used=3
 memo=Transfer Function Macro
 Label Offset=22,-14,-20,60
 PinCnt=2
@@ -173,35 +148,22 @@ Pin="in",a,0,0,-3,-2
 Pin="out",a,6,0,-4,-1
 
 [compdef]
-Name=Sum3
+Name=Sum
 Definition=Macro
-Shape=Sum3
+Shape=Sum
 Mask=4096
-Used=1
-memo=3-Input Summer Macro
-Label Offset=25,41,12,44
-PinCnt=4
-Pin="PinA",a,0,0,-3,-1
-Pin="PinB",a,0,2,-4,0
-Pin="PinC",a,0,4,-4,0
-Pin="PinD",a,14,2,-7,-2
-
-[compdef]
-Name=Abs
-Definition=Macro
-Shape=Absolute
-Mask=20480
-Used=4
-memo=Absolute Value Macro
-Label Offset=20,25,28,28
-PinCnt=2
-Pin="PinA",a,0,0,-11,-3
-Pin="PinB",a,10,0,-6,-3
+Used=7
+memo=2-Input Summer Macro
+Label Offset=45,5,15,21
+PinCnt=3
+Pin="PinA",a,0,0,-9,-3
+Pin="PinB",a,4,4,8,4
+Pin="PinC",a,8,0,-7,-3
 
 [Circuit]
 Window Placement=2,3, -1,-1, -8,-31, 26,26,1157,456
 Default Object=Color=#000080
-Default Object Font=Height=-15,FStyle=0,Color=#000000,Name=Arial
+Default Object Font=Height=-15,FStyle=0,Color=#000080,Name=Arial
 Default Object Apply Border To Text=No
 Default Object Apply Fill To Text=No
 Default Object GridSnap=No
@@ -211,7 +173,7 @@ PowerFormat=3
 PathDelayFormat=3
 WarningFormat=3
 GridTextFormulaFormat=3
-Window Placement in Transient Analysis=2,3, -1,-1, -8,-31, 182,182,1527,612
+Window Placement in Transient Analysis=2,3, -1,-1, -8,-31, 26,26,1157,456
 SpiceType=AMBIGUOUS
 Title_Block_Border=None
 Title_Block=False
@@ -234,7 +196,7 @@ Rot=7
 [Comp]
 Name=F
 Style=ShowPinText
-Px=792,288
+Px=576,288
 
 [Attr]
 ON=22,-14,PART
@@ -247,7 +209,7 @@ V=F
 
 [Attr]
 ON=22,28,Param:FS
-V=e^(-s*3)/((1 + 0.88 * S)^5)
+V=e^(-s*1.5)/((1 + 0.88 * S)^5)
 Style=8192
 
 [Attr]
@@ -375,7 +337,7 @@ V
 
 [Comp]
 Name=Multi
-Px=744,288
+Px=528,288
 Rot=4
 
 [Attr]
@@ -387,8 +349,8 @@ ON=25,-36,FILE
 V=Multi
 
 [Attr]
-ON=6,23,Param:COEF
-V=0.7
+ON=13,-8,Param:COEF
+V=0.6
 Style=8192
 
 [Attr]
@@ -396,19 +358,44 @@ ON=0,0,PACKAGE
 V
 
 [Wire]
-Pxs=952,288,960,288
+Pxs=736,288,744,288
 
 [Wire]
-Pxs=960,288,960,496
+Pxs=744,288,744,368
 
 [Wire]
-Pxs=432,496,960,496
+Pxs=432,368,744,368
 
 [Wire]
-Pxs=960,288,1096,288
+Pxs=744,288,880,288
 
 [Wire]
-Pxs=432,320,432,496
+Pxs=432,320,432,368
+
+[Comp]
+Name=Sum
+Px=464,288
+
+[Attr]
+ON=45,5,PART
+V=X4
+Style=8192
+
+[Attr]
+ON=45,19,FILE
+V=Sum
+
+[Attr]
+ON=45,47,Param:KA
+V=1
+
+[Attr]
+ON=45,61,Param:KB
+V=1
+
+[Attr]
+ON=0,0,PACKAGE
+V
 
 [Comp]
 Name=F
@@ -426,135 +413,24 @@ V=F
 
 [Attr]
 ON=44,28,Param:FS
-V=1/(s * 5)
+V=1/(s * 6.5)
 Style=8192
 
 [Attr]
 ON=0,0,PACKAGE
 V
-
-[Comp]
-Name=F
-Style=ShowPinText
-Px=464,160
-
-[Attr]
-ON=22,-14,PART
-V=X6
-Style=8192
-
-[Attr]
-ON=22,0,FILE
-V=F
-
-[Attr]
-ON=22,28,Param:FS
-V=1.25 * s / (1 + 0.156 * s)
-Style=8192
-
-[Attr]
-ON=0,0,PACKAGE
-V
-
-[Comp]
-Name=Sum3
-Px=632,272
-
-[Attr]
-ON=25,41,PART
-V=X7
-Style=8192
-
-[Attr]
-ON=25,55,FILE
-V=Sum3
-
-[Attr]
-ON=25,83,Param:KA
-V=1
-
-[Attr]
-ON=25,97,Param:KB
-V=1
-
-[Attr]
-ON=25,111,Param:KC
-V=1
-
-[Attr]
-ON=25,125,PACKAGE
-V=TO-263
 
 [Wire]
 Pxs=464,288,464,432
 
 [Wire]
-Pxs=464,160,464,288
+Pxs=496,320,496,392
 
 [Wire]
-Pxs=464,288,632,288
+Pxs=496,392,624,392
 
 [Wire]
-Pxs=624,160,624,272
-
-[Wire]
-Pxs=624,272,632,272
-
-[Wire]
-Pxs=624,304,624,432
-
-[Wire]
-Pxs=624,304,632,304
-
-[Wire]
-Pxs=464,432,464,640
-
-[Wire]
-Pxs=464,640,480,640
-
-[Comp]
-Name=Abs
-Style=ShowPinText
-Px=480,640
-
-[Attr]
-ON=20,25,PART
-V=X8
-Style=8192
-
-[Attr]
-ON=20,39,FILE
-V=Abs
-
-[Attr]
-ON=0,0,PACKAGE
-V
-
-[Comp]
-Name=F
-Style=ShowPinText
-Px=560,640
-
-[Attr]
-ON=22,-14,PART
-V=X9
-Style=8192
-
-[Attr]
-ON=22,0,FILE
-V=F
-
-[Attr]
-ON=22,28,Param:FS
-V=1 / S
-Style=8192
-
-[Attr]
-ON=0,0,PACKAGE
-V
-
-[Wire]
-Pxs=720,640,1128,640
+Pxs=624,392,624,432
 
 [Schematic]
 CurrentSection 0=0
@@ -753,7 +629,7 @@ Scale 0=1
 Scale 1=1
 Scale 2=1
 Scale 3=1
-Px=774,319
+Px=909,397
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
 Anchor Color=#000000
@@ -881,7 +757,7 @@ SimulationLog=True
 
 [Transient]
 WinID=1
-Window Placement=2,3, -1,-1, -8,-31, 182,182,1527,612
+Window Placement=2,3, -1,-1, -8,-31, 26,26,1157,456
 Font=Height=-19,FStyle=0,Color=#0000FF,Name=Arial
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
@@ -1117,7 +993,7 @@ Seed=0
 
 [Limits]
 Analysis=Transient
-TMax=50
+TMax=100
 TStart=0
 TStep=0
 NPts=51
@@ -1135,9 +1011,11 @@ Plt=1
 AliasID=1
 XExp=T
 YExp=v(3)
-XRng=AutoAlways
-YRng=AutoAlways
+XRng=100
+YRng=3,-0.75
 Options=LINEARX,LINEARY
+Range Grid X=20
+Range Grid Y=0.75
 Enable=Enable
 Line Color=#0000FF
 Text Color=#0000FF
@@ -1159,9 +1037,11 @@ Plt=1
 AliasID=2
 XExp=T
 YExp=v(2)
-XRng=AutoAlways
-YRng=AutoAlways
+XRng=100
+YRng=3,-0.75
 Options=LINEARX,LINEARY
+Range Grid X=20
+Range Grid Y=0.75
 Enable=Enable
 Line Color=#FF0000
 Text Color=#FF0000
@@ -1179,12 +1059,7 @@ NOFmtY=3E
 
 [WaveForm]
 Analysis=Transient
-Plt=2
-AliasID=3
-XExp=T
-YExp=v(9)
-XRng=AutoAlways
-YRng=AutoAlways
+AliasID=-1
 Options=LINEARX,LINEARY
 Enable=Enable
 Line Color=#008000
